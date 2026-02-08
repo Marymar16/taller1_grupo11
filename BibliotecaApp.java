@@ -70,7 +70,24 @@ public class BibliotecaApp {
                                                                                 
     System.out.println("✅ Préstamo registrado correctamente");
     }{ }
-    static void mostrarPrestamos() { /* TODO */ }
+    static void mostrarPrestamos() {
+            if (prestamos.isEmpty()) {
+             System.out.println("⚠ No hay préstamos registrados.");
+                return;
+            }
+
+            System.out.println("📚 LISTA DE PRÉSTAMOS:");
+
+                for (ArrayList<Object> p : prestamos) {
+                System.out.println("-----------------------------");
+                System.out.println("ID: " + p.get(0));
+                System.out.println("Usuario: " + p.get(1));
+                System.out.println("Libro: " + p.get(2));
+                System.out.println("Días: " + p.get(3));
+                System.out.println("Multa por día: $" + p.get(4));
+            }
+        }
+    } }
     static void buscarPrestamoPorId() { /* TODO */ }
     static void actualizarPrestamo() { /* TODO */ }
     static void eliminarPrestamo() { /* TODO */ }
