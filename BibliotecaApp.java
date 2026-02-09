@@ -41,8 +41,53 @@ public class BibliotecaApp {
     }
 
     // ====== CRUD (por implementar) ======
-    static void registrarPrestamo() { /* TODO */ }
-    static void mostrarPrestamos() { /* TODO */ }
+    static void registrarPrestamo() {
+            ArrayList<Object> prestamo = new ArrayList<>();
+            
+                System.out.print("ID del préstamo: ");
+                    int id = sc.nextInt();
+                        sc.nextLine(); // limpiar buffer
+                        
+                System.out.print("Nombre del usuario: ");
+                    String nombre = sc.nextLine();
+                                
+                System.out.print("Título del libro: ");
+                    String titulo = sc.nextLine();
+                                        
+                System.out.print("Días de préstamo: ");
+                    int dias = sc.nextInt();
+                                                
+                System.out.print("Multa por día: ");
+                    double multa = sc.nextDouble();
+                                                        
+                prestamo.add(id);
+                prestamo.add(nombre);
+                prestamo.add(titulo);
+                prestamo.add(dias);
+                prestamo.add(multa);
+                                                                            
+                prestamos.add(prestamo);
+                                                                                
+    System.out.println("✅ Préstamo registrado correctamente");
+    }{ }
+    static void mostrarPrestamos() {
+            if (prestamos.isEmpty()) {
+             System.out.println("⚠ No hay préstamos registrados.");
+                return;
+            }
+
+            System.out.println("📚 LISTA DE PRÉSTAMOS:");
+
+                for (ArrayList<Object> p : prestamos) {
+                System.out.println("-----------------------------");
+                System.out.println("ID: " + p.get(0));
+                System.out.println("Usuario: " + p.get(1));
+                System.out.println("Libro: " + p.get(2));
+                System.out.println("Días: " + p.get(3));
+                System.out.println("Multa por día: $" + p.get(4));
+            }
+        }
+    } }
     static void buscarPrestamoPorId() { /* TODO */ }
     static void actualizarPrestamo() { /* TODO */ }
     static void eliminarPrestamo() { /* TODO */ }
