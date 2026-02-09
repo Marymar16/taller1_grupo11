@@ -40,12 +40,98 @@ public class BibliotecaApp {
         System.out.println("7. Salir");
     }
 
-    // ====== CRUD (por implementar) ======
-    static void registrarPrestamo() { /* TODO */ }
-    static void mostrarPrestamos() { /* TODO */ }
-    static void buscarPrestamoPorId() { /* TODO */ }
-    static void actualizarPrestamo() { /* TODO */ }
-    static void eliminarPrestamo() { /* TODO */ }
+    // ====== CRUD ======
+
+    static void registrarPrestamo() { 
+        int id = leerEntero("ID del préstamo: ");
+    String nombre = leerTexto("Nombre del usuario: ");
+    String titulo = leerTexto("Título del libro: ");
+    int dias = leerEntero("Días de préstamo: ");
+    double multa = Double.parseDouble(leerTexto("Multa por día: "));
+
+    ArrayList<Object> prestamo = new ArrayList<>();
+    prestamo.add(id);
+    prestamo.add(nombre);
+    prestamo.add(titulo);
+    prestamo.add(dias);
+    prestamo.add(multa);
+
+    prestamos.add(prestamo);
+    System.out.println("Préstamo registrado correctamente.");
+     }
+
+
+    static void mostrarPrestamos() { if (prestamos.isEmpty()) {
+        System.out.println("No hay préstamos registrados.");
+        return;
+    }
+
+    for (ArrayList<Object> p : prestamos) {
+        System.out.println("----------------------------");
+        System.out.println("ID: " + p.get(0));
+        System.out.println("Usuario: " + p.get(1));
+        System.out.println("Libro: " + p.get(2));
+        System.out.println("Días: " + p.get(3));
+        System.out.println("Multa por día: " + p.get(4));
+    }
+}
+
+
+    static void buscarPrestamoPorId() { 
+        int idBuscar = leerEntero("Ingrese el ID a buscar: ");
+
+    for (ArrayList<Object> p : prestamos) {
+        if ((int) p.get(0) == idBuscar) {
+            System.out.println("Préstamo encontrado:");
+            System.out.println(p);
+            return;
+        }
+    }
+
+    System.out.println("Préstamo no encontrado.");
+    }
+
+
+    static void actualizarPrestamo() { 
+          int idBuscar = leerEntero("Ingrese el ID a actualizar: ");
+
+    for (ArrayList<Object> p : prestamos) {
+        if ((int) p.get(0) == idBuscar) {
+
+            String nuevoNombre = leerTexto("Nuevo nombre del usuario: ");
+            String nuevoTitulo = leerTexto("Nuevo título del libro: ");
+            int nuevosDias = leerEntero("Nuevos días de préstamo: ");
+            double nuevaMulta = Double.parseDouble(leerTexto("Nueva multa por día: "));
+
+            p.set(1, nuevoNombre);
+            p.set(2, nuevoTitulo);
+            p.set(3, nuevosDias);
+            p.set(4, nuevaMulta);
+
+            System.out.println("Préstamo actualizado correctamente.");
+            return;
+        }
+    }
+
+    System.out.println("Préstamo no encontrado.");
+    }
+
+
+    static void eliminarPrestamo() { 
+        int idBuscar = leerEntero("Ingrese el ID a eliminar: ");
+
+    for (int i = 0; i < prestamos.size(); i++) {
+        if ((int) prestamos.get(i).get(0) == idBuscar) {
+            prestamos.remove(i);
+            System.out.println("Préstamo eliminado correctamente.");
+            return;
+        }
+    }
+
+    System.out.println("Préstamo no encontrado.");
+    }
+
+    
 
     // ====== Cálculo (por implementar) ======
     static void calcularTotalMultas() { /* TODO */ }
