@@ -6,7 +6,7 @@ public class BibliotecaApp {
     // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
     static ArrayList<ArrayList<Object>> prestamos = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
-
+    
     public static void main(String[] args) {
         int opcion;
         do {
@@ -41,6 +41,20 @@ public class BibliotecaApp {
     }
 
     // ====== CRUD (por implementar) ======
+    static void eliminarPrestamo() { 
+        int id = leerEntero("Ingrese el ID del préstamo a eliminar: ");
+
+    for (int i = 0; i < prestamos.size(); i++) {
+        int idGuardado = (int) prestamos.get(i).get(0);
+
+        if (idGuardado == id) {
+            prestamos.remove(i);
+            System.out.println("Préstamo eliminado.");
+            return;
+        }
+    }
+
+    System.out.println("No se encontró el préstamo."); }
     static void registrarPrestamo() {
             ArrayList<Object> prestamo = new ArrayList<>();
             
@@ -88,7 +102,6 @@ public class BibliotecaApp {
             }
         }
      
-    static void eliminarPrestamo() { /* TODO */ }
     // ====== CRUD ======
 
    static void buscarPrestamoPorId() { 
@@ -104,8 +117,6 @@ public class BibliotecaApp {
 
     System.out.println("Préstamo no encontrado.");
     }
-
-
     static void actualizarPrestamo() { 
           int idBuscar = leerEntero("Ingrese el ID a actualizar: ");
 
@@ -132,7 +143,18 @@ public class BibliotecaApp {
 
 
     // ====== Cálculo (por implementar) ======
-    static void calcularTotalMultas() { /* TODO */ }
+    static void calcularTotalMultas() { 
+        double total = 0;
+
+    for (int i = 0; i < prestamos.size(); i++) {
+        int dias = (int) prestamos.get(i).get(3);
+        double multa = (double) prestamos.get(i).get(4);
+
+        total = total + (dias * multa);
+    }
+
+    System.out.println("Total de multas: $" + total);
+    }
 
     // ====== Utilidades mínimas ======
     static int leerEntero(String msg) {
@@ -151,5 +173,6 @@ public class BibliotecaApp {
         return sc.nextLine().trim();
     }
 }
+
 
 
