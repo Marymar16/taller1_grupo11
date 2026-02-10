@@ -68,15 +68,15 @@ public class BibliotecaApp {
                                                                             
                 prestamos.add(prestamo);
                                                                                 
-    System.out.println("✅ Préstamo registrado correctamente");
-    }{ }
+    System.out.println(" Préstamo registrado correctamente");
+    }
     static void mostrarPrestamos() {
             if (prestamos.isEmpty()) {
-             System.out.println("⚠ No hay préstamos registrados.");
+             System.out.println(" No hay préstamos registrados.");
                 return;
             }
 
-            System.out.println("📚 LISTA DE PRÉSTAMOS:");
+            System.out.println("LISTA DE PRÉSTAMOS:");
 
                 for (ArrayList<Object> p : prestamos) {
                 System.out.println("-----------------------------");
@@ -87,10 +87,49 @@ public class BibliotecaApp {
                 System.out.println("Multa por día: $" + p.get(4));
             }
         }
-    } }
-    static void buscarPrestamoPorId() { /* TODO */ }
-    static void actualizarPrestamo() { /* TODO */ }
+     
     static void eliminarPrestamo() { /* TODO */ }
+    // ====== CRUD ======
+
+   static void buscarPrestamoPorId() { 
+        int idBuscar = leerEntero("Ingrese el ID a buscar: ");
+
+    for (ArrayList<Object> p : prestamos) {
+        if ((int) p.get(0) == idBuscar) {
+            System.out.println("Préstamo encontrado:");
+            System.out.println(p);
+            return;
+        }
+    }
+
+    System.out.println("Préstamo no encontrado.");
+    }
+
+
+    static void actualizarPrestamo() { 
+          int idBuscar = leerEntero("Ingrese el ID a actualizar: ");
+
+    for (ArrayList<Object> p : prestamos) {
+        if ((int) p.get(0) == idBuscar) {
+
+            String nuevoNombre = leerTexto("Nuevo nombre del usuario: ");
+            String nuevoTitulo = leerTexto("Nuevo título del libro: ");
+            int nuevosDias = leerEntero("Nuevos días de préstamo: ");
+            double nuevaMulta = Double.parseDouble(leerTexto("Nueva multa por día: "));
+
+            p.set(1, nuevoNombre);
+            p.set(2, nuevoTitulo);
+            p.set(3, nuevosDias);
+            p.set(4, nuevaMulta);
+
+            System.out.println("Préstamo actualizado correctamente.");
+            return;
+        }
+    }
+
+    System.out.println("Préstamo no encontrado.");
+    }
+
 
     // ====== Cálculo (por implementar) ======
     static void calcularTotalMultas() { /* TODO */ }
@@ -112,4 +151,5 @@ public class BibliotecaApp {
         return sc.nextLine().trim();
     }
 }
+
 
